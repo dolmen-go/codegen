@@ -8,15 +8,18 @@ import (
 	"text/template"
 )
 
+// Create runs the "text/template".Template with data, pass it through gofmt
+// and saves it to filePath
 func Create(filePath string, t *template.Template, data interface{}) (err error) {
 	return (&CodeTemplate{}).Create(filePath, data)
 }
 
 type CodeTemplate struct {
-	Template *template.Template
-	Buffer   bytes.Buffer
+	Template *template.Template // See "text/template"
+	Buffer   bytes.Buffer       // Used for sharing allocated memory between multiple Create calls
 }
 
+// Parse creates a CodeTemplate from a "text/template" source
 func Parse(codeTemplate string) (*CodeTemplate, error) {
 	t, err := template.New("").Parse(codeTemplate)
 	if err != nil {
@@ -27,6 +30,7 @@ func Parse(codeTemplate string) (*CodeTemplate, error) {
 	return &tmpl, nil
 }
 
+// MustParse wraps Parse throwing errors as exception
 func MustParse(codeTemplate string) *CodeTemplate {
 	tmpl, err := Parse(codeTemplate)
 	if err != nil {
@@ -35,6 +39,8 @@ func MustParse(codeTemplate string) *CodeTemplate {
 	return tmpl
 }
 
+// Create runs the template with data, pass it through gofmt
+// and saves it to filePath
 func (t *CodeTemplate) Create(filePath string, data interface{}) (err error) {
 
 	t.Buffer.Reset()
