@@ -5,6 +5,7 @@ import (
 	"bytes"
 	"go/format"
 	"os"
+	"sync"
 	"text/template"
 )
 
@@ -17,6 +18,7 @@ func Create(filePath string, t *template.Template, data interface{}) (err error)
 type CodeTemplate struct {
 	Template *template.Template // See "text/template"
 	Buffer   bytes.Buffer       // Used for sharing allocated memory between multiple Create calls
+	mu       sync.Mutex
 }
 
 // Parse creates a CodeTemplate from a "text/template" source
@@ -42,15 +44,20 @@ func MustParse(codeTemplate string) *CodeTemplate {
 // Create runs the template with data, pass it through gofmt
 // and saves it to filePath
 func (t *CodeTemplate) Create(filePath string, data interface{}) (err error) {
+	// This anonymous function exists just to wrap the mutex protected block
+	out, err := func() ([]byte, error) {
+		// To protect t.Buffer
+		t.mu.Lock()
+		defer t.mu.Unlock()
 
-	t.Buffer.Reset()
+		t.Buffer.Reset()
 
-	err = t.Template.Execute(&t.Buffer, data)
-	if err != nil {
-		return
-	}
+		if err := t.Template.Execute(&t.Buffer, data); err != nil {
+			return nil, err
+		}
 
-	out, err := format.Source(t.Buffer.Bytes())
+		return format.Source(t.Buffer.Bytes())
+	}()
 	if err != nil {
 		return
 	}
