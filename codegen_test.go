@@ -1,12 +1,11 @@
-package codegen
+package codegen_test
 
-/*
 import (
 	"os"
 	"testing"
 )
 
-func TestCreate(t *testing.T) {
+func TestExampleMustParse(t *testing.T) {
 	os.Args = make([]string, 2)
 	os.Args[1] = "foo"
 	const filename = "main_foo.go"
@@ -21,7 +20,5 @@ func TestCreate(t *testing.T) {
 		_ = os.Remove("main_foo.go")
 	}()
 
-	// How could
 	ExampleMustParse()
 }
-*/

@@ -8,14 +8,14 @@ import (
 
 func ExampleMustParse() {
 	const template = `
-{{/**/}}//+build {{tag}}
+{{/**/}}//+build {{.}}
 
 package main
 
 import "os"
 
 func main() {
-	os.StdOut.WriteString("Hello, {{tag}}!\n")
+	os.StdOut.WriteString("Hello, {{.}}!\n")
 }
 `
 
