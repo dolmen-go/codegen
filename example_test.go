@@ -8,7 +8,8 @@ import (
 
 func ExampleMustParse() {
 	const template = `
-{{/**/}}// +build {{tag}}
+{{/**/}}//+build {{tag}}
+
 package main
 
 import "os"
