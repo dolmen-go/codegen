@@ -1,6 +1,7 @@
 package codegen_test
 
 import (
+	"log"
 	"os"
 	"testing"
 )
@@ -17,7 +18,9 @@ func TestExampleMustParse(t *testing.T) {
 			t.Fail()
 		}
 		_ = f.Close()
-		_ = os.Remove("main_foo.go")
+		if err = os.Remove("main_foo.go"); err == nil {
+			log.Printf("File %s removed.\n", filename)
+		}
 	}()
 
 	ExampleMustParse()
