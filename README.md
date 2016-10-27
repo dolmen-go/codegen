@@ -1,5 +1,10 @@
 # codegen - Utilities for Go code generators
 
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/dolmen-go/codegen)
+[![Travis-CI](https://img.shields.io/travis/dolmen-go/jsonptr.svg)](https://travis-ci.org/dolmen-go/codegen)
+[![Go Report Card](https://goreportcard.com/badge/github.com/dolmen-go/jsonptr)](https://goreportcard.com/report/github.com/dolmen-go/codegen)
+
+
 Utilities for writing code generators from a text template, with output going through `gofmt`.
 
 See [documentation](https://godoc.org/github.com/dolmen-go/codegen).
