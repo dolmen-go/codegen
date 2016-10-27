@@ -11,8 +11,8 @@ import (
 
 // Create runs the "text/template".Template with data, pass it through gofmt
 // and saves it to filePath
-func Create(filePath string, t *template.Template, data interface{}) (err error) {
-	return (&CodeTemplate{}).Create(filePath, data)
+func CreateFile(filePath string, t *template.Template, data interface{}) (err error) {
+	return (&CodeTemplate{}).CreateFile(filePath, data)
 }
 
 type CodeTemplate struct {
@@ -43,7 +43,7 @@ func MustParse(codeTemplate string) *CodeTemplate {
 
 // Create runs the template with data, pass it through gofmt
 // and saves it to filePath
-func (t *CodeTemplate) Create(filePath string, data interface{}) (err error) {
+func (t *CodeTemplate) CreateFile(filePath string, data interface{}) (err error) {
 	// This anonymous function exists just to wrap the mutex protected block
 	out, err := func() ([]byte, error) {
 		// To protect t.Buffer

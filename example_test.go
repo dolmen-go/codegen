@@ -21,7 +21,7 @@ func main() {
 
 	tmpl := codegen.MustParse(template)
 	for _, tag := range os.Args[1:] {
-		if err := tmpl.Create("main_"+tag+".go", tag); err != nil {
+		if err := tmpl.CreateFile("main_"+tag+".go", tag); err != nil {
 			log.Fatal(err)
 		}
 	}
