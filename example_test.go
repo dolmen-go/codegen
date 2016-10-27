@@ -15,7 +15,7 @@ package main
 import "os"
 
 func main() {
-	os.StdOut.WriteString("Hello, {{.}}!\n")
+	os.Stdout.WriteString("Hello, {{.}}!\n")
 }
 `
 
