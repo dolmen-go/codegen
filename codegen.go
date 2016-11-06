@@ -17,13 +17,13 @@ var GeneratedCodeRegexp = regexp.MustCompile(`(?m:^// Code generated .* DO NOT E
 
 // CreateFile runs the "text/template".Template with data, pass it through gofmt
 // and saves it to filePath.
-func CreateFile(filePath string, t *template.Template, data interface{}) error {
-	return (&CodeTemplate{}).CreateFile(filePath, data)
+func CreateFile(filePath string, t *template.Template, data interface{}) (err error) {
+	return (&CodeTemplate{Template: t}).CreateFile(filePath, data)
 }
 
 type CodeTemplate struct {
 	Template *template.Template // See "text/template"
-	Buffer   bytes.Buffer       // Used for sharing allocated memory between multiple Create calls
+	Buffer   bytes.Buffer       // Used for sharing allocated memory between multiple CreateFile calls
 	mu       sync.Mutex
 }
 
