@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestExampleMustParse(t *testing.T) {
+func TestExample(t *testing.T) {
 	os.Args = make([]string, 2)
 	os.Args[1] = "foo"
 	const filename = "main_foo.go"
@@ -23,5 +23,5 @@ func TestExampleMustParse(t *testing.T) {
 		}
 	}()
 
-	ExampleMustParse()
+	Example()
 }
