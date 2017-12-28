@@ -5,11 +5,10 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/dolmen-go/jsonptr)](https://goreportcard.com/report/github.com/dolmen-go/codegen)
 
 
-Utilities for writing code generators from a text template, with output going through `gofmt`.
+Utilities for writing code generators from a [text template](https://golang.org/pkg/text/template/),
+with output properly formatted thanks to [`gofmt`](https://golang.org/pkg/go/format/).
 
-See [documentation](https://godoc.org/github.com/dolmen-go/codegen).
-
-See [example](example_test.go)
+See [documentation](https://godoc.org/github.com/dolmen-go/codegen) and [example](example_test.go).
 
 ## See also
 
@@ -17,7 +16,7 @@ See [example](example_test.go)
 
 ## License
 
-Copyright 2016 Olivier Mengué
+Copyright 2016-2017 Olivier Mengué
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
