@@ -21,6 +21,7 @@ func CreateFile(filePath string, t *template.Template, data interface{}) (err er
 	return (&CodeTemplate{Template: t}).CreateFile(filePath, data)
 }
 
+// CodeTemplate is the precompiled template for generating one or multiple Go source files.
 type CodeTemplate struct {
 	Template *template.Template // See "text/template"
 	Buffer   bytes.Buffer       // Used for sharing allocated memory between multiple CreateFile calls
