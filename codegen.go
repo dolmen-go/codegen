@@ -1,4 +1,4 @@
-// Package codegen provides utilities for writing short Go code generators from text templates
+// Package codegen provides utilities for writing short Go code generators from a text/template.
 package codegen
 
 import (
@@ -28,6 +28,9 @@ type CodeTemplate struct {
 }
 
 // Parse creates a CodeTemplate from a "text/template" source.
+//
+// The expansion of the template is expected to be valid a Go source file
+// containing the code generation standard tag. See GeneratedCodeRegexp.
 func Parse(codeTemplate string) (*CodeTemplate, error) {
 	t, err := template.New("").Parse(codeTemplate)
 	if err != nil {
