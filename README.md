@@ -10,10 +10,6 @@ with output properly formatted thanks to [`gofmt`](https://golang.org/pkg/go/for
 
 See [documentation](https://godoc.org/github.com/dolmen-go/codegen) and [example](example_test.go).
 
-## See also
-
-[github.com/huin/goutil/codegen](https://github.com/huin/goutil/codegen)
-
 ## License
 
 Copyright 2016-2017 Olivier Mengué

@@ -37,9 +37,7 @@ func Parse(codeTemplate string) (*CodeTemplate, error) {
 	if err != nil {
 		return nil, err
 	}
-	var tmpl CodeTemplate
-	tmpl.Template = t
-	return &tmpl, nil
+	return &CodeTemplate{Template: t}, nil
 }
 
 // MustParse wraps Parse throwing errors as exception.
