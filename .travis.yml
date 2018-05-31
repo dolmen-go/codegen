@@ -10,6 +10,12 @@ go:
 - "1.5"
 - "1.4"
 
+# Allow to test forks properly
+go_import_path: github.com/dolmen-go/codegen
+
+before_install:
+- go list
+
 script:
 - go test -v -coverprofile=coverage.txt -covermode=atomic
 
