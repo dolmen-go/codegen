@@ -2,19 +2,36 @@
 language: go
 go:
 - tip
-- "1.10"
-- "1.9"
-- "1.8"
+- 1.11.x
+- 1.10.x
+- 1.9.x
+- 1.8.x
 - "1.7"
 - "1.6"
 - "1.5"
 - "1.4"
+sudo: false
+
+os:
+- linux
+- osx
+
+env:
+  global:
+  - GO111MODULE=on
+
 
 # Allow to test forks properly
 go_import_path: github.com/dolmen-go/codegen
 
 before_install:
-- go list
+- GO111MODULE=off go list
+
+install:
+# Fetch dependencies:
+# - go < 1.11:  go get -t -v ./...
+# - go >= 1.11: go list -test -mod=readonly
+- "case \"$(go version)\" in (*' go1.'[02-9]*|*' go1.10.'*) go get -t -v ./... ;; (*) go list -test -mod=readonly ;; esac"
 
 script:
 - go test -v -coverprofile=coverage.txt -covermode=atomic
