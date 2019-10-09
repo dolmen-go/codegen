@@ -27,6 +27,8 @@ env:
 go_import_path: github.com/dolmen-go/codegen
 
 before_install:
+# List Go versions installable from Travis
+- gimme --known
 - GO111MODULE=off go list
 
 install:
