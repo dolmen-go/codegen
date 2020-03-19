@@ -9,6 +9,7 @@ go:
 - 1.9.x
 - 1.8.x
 - 1.7.x
+# "go build" crashes on recent OS X: https://github.com/travis-ci/gimme/issues/182
 #- 1.6.x
 #- 1.5.x
 #- 1.4.x
