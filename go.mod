@@ -1,3 +1,3 @@
-module github.com/dolmen-go/codegen
+module github.com/Cyrannosaurus/codegen
 
 go 1.12
