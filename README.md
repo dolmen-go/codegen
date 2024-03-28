@@ -1,7 +1,7 @@
 # codegen - Utilities for Go code generators
 
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/dolmen-go/codegen)
-[![Travis-CI](https://img.shields.io/travis/dolmen-go/jsonptr.svg)](https://travis-ci.org/dolmen-go/codegen)
+[![Codecov](https://codecov.io/gh/dolmen-go/codegen/graph/badge.svg?token=y7mxhgwKi7)](https://codecov.io/gh/dolmen-go/codegen)
 [![Go Report Card](https://goreportcard.com/badge/github.com/dolmen-go/jsonptr)](https://goreportcard.com/report/github.com/dolmen-go/codegen)
 
 
