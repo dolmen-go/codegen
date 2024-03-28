@@ -3,6 +3,7 @@ package codegen_test
 import (
 	"log"
 	"os"
+	"strings"
 	"testing"
 
 	"github.com/dolmen-go/codegen"
@@ -44,5 +45,12 @@ func TestParseFailures(t *testing.T) {
 	}()
 	if err == nil {
 		t.Fatal("MustParse should panic.")
+	}
+}
+
+func TestCreateFileFailures(t *testing.T) {
+	err := codegen.CreateFile("tmp_test.go", codegen.MustParse("package main_test\n").Template, 0)
+	if err == nil || !strings.Contains(err.Error(), "https://golang.org/s/generatedcode") {
+		t.Fatal("Error expected")
 	}
 }
