@@ -39,4 +39,9 @@ jobs:
       run: go test -v -covermode=atomic -coverprofile=coverage.out ./...
 
     - name: Upload coverage to Codecov.io
+      # https://github.com/codecov/codecov-action
+      # https://docs.codecov.com/docs/quick-start
       uses: codecov/codecov-action@v4
+      with:
+        # https://github.com/dolmen-go/codegen/settings/secrets/actions
+        token: ${{ secrets.CODECOV_TOKEN }}
