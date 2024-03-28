@@ -17,9 +17,10 @@ limitations under the License.
 package codegen_test
 
 import (
-	"github.com/dolmen-go/codegen"
 	"log"
 	"os"
+
+	"github.com/dolmen-go/codegen"
 )
 
 func Example() {
