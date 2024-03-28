@@ -49,8 +49,20 @@ func TestParseFailures(t *testing.T) {
 }
 
 func TestCreateFileFailures(t *testing.T) {
-	err := codegen.CreateFile("tmp_test.go", codegen.MustParse("package main_test\n").Template, 0)
+	const filename = "tmp_test.go"
+	// Remove the file just in case.
+	// In the normal case (test success), the file is not created because of earlier failures.
+	defer os.Remove(filename)
+
+	err := codegen.CreateFile(filename, codegen.MustParse("package codegen_test\n").Template, 0)
 	if err == nil || !strings.Contains(err.Error(), "https://golang.org/s/generatedcode") {
 		t.Fatal("Error expected")
 	}
+
+	err = codegen.MustParse("// Code generated ! DO NOT EDIT.\n\npackage codegen_test\n\n// {{ len 1 }}\n").CreateFile(filename, nil)
+	if err == nil || !strings.Contains(err.Error(), "len") {
+		t.Log("Error:", err)
+		t.Fatal("Error expected when evaluating the template (because of epression `len 1`)")
+	}
+
 }
