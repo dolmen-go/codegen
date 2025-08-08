@@ -28,7 +28,9 @@ import (
 )
 
 // GeneratedCodeRegexp checks the code generation standard
-// defined at https://golang.org/s/generatedcode.
+// defined at https://go.dev/s/generatedcode.
+//
+// Deprecated: use instead [go/ast.IsGenerated].
 var GeneratedCodeRegexp = regexp.MustCompile(`(?m:^// Code generated .* DO NOT EDIT\.$)`)
 
 // CreateFile runs the "text/template".Template with data, pass it through gofmt
@@ -47,7 +49,9 @@ type CodeTemplate struct {
 // Parse creates a CodeTemplate from a "text/template" source.
 //
 // The expansion of the template is expected to be valid a Go source file
-// containing the code generation standard tag. See GeneratedCodeRegexp.
+// containing the [code generation standard tag].
+//
+// [code generation standard tag]: https://go.dev/s/generatedcode].
 func Parse(codeTemplate string) (*CodeTemplate, error) {
 	t, err := template.New("").Parse(codeTemplate)
 	if err != nil {
