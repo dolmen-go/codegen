@@ -89,7 +89,7 @@ func (t *CodeTemplate) CreateFile(filePath string, data interface{}) error {
 		code := t.Buffer.Bytes()
 
 		// Enforce code generation standard https://golang.org/s/generatedcode
-		if !GeneratedCodeRegexp.Match(code) {
+		if !isGenerated(code) {
 			return nil, errors.New("output does not follow standard defined at https://golang.org/s/generatedcode")
 		}
 
