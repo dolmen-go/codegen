@@ -30,12 +30,13 @@ func main() {
 
 [Try on the Go Playground](https://go.dev/play/p/CfJBt9ng-4w).
 
-Features:
-* The Go syntax is validated before saving.
-* The output properly is reformatted thanks to [`gofmt`](https://pkg.go.dev/go/format).
-* The Go standard for marking generated code (https://golang.org/s/generatedcode) is enforces.
+## Features
 
-See [documentation](https://godoc.org/github.com/dolmen-go/codegen) and [example](example_test.go).
+* Go syntax is validated before writing the output file.
+* Output is properly reformatted thanks to [`gofmt`](https://pkg.go.dev/go/format).
+* The Go standard for marking generated files (https://go.dev/s/generatedcode) is enforced.
+
+See [documentation](https://pkg.go.dev/github.com/dolmen-go/codegen) and [example](example_test.go).
 
 
 ## License
