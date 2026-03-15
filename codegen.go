@@ -1,5 +1,5 @@
 /*
-Copyright 2024 Olivier Mengué
+Copyright 2026 Olivier Mengué
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ func MustParse(codeTemplate string) *CodeTemplate {
 // CreateFile runs the template with data, pass it through gofmt
 // and saves it to filePath.
 //
-// The code generation standard at https://golang.org/s/generatedcode is enforced.
+// The code generation standard at https://go.dev/s/generatedcode is enforced.
 func (t *CodeTemplate) CreateFile(filePath string, data interface{}) error {
 	// This anonymous function exists just to wrap the mutex protected block
 	out, err := func() ([]byte, error) {
@@ -88,9 +88,9 @@ func (t *CodeTemplate) CreateFile(filePath string, data interface{}) error {
 
 		code := t.Buffer.Bytes()
 
-		// Enforce code generation standard https://golang.org/s/generatedcode
+		// Enforce code generation standard https://go.dev/s/generatedcode
 		if !GeneratedCodeRegexp.Match(code) {
-			return nil, errors.New("output does not follow standard defined at https://golang.org/s/generatedcode")
+			return nil, errors.New("output does not follow the standard defined at https://go.dev/s/generatedcode")
 		}
 
 		return format.Source(code)

@@ -1,5 +1,5 @@
 /*
-Copyright 2024 Olivier Mengué
+Copyright 2026 Olivier Mengué
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -71,7 +71,7 @@ func TestCreateFileFailures(t *testing.T) {
 	defer os.Remove(filename)
 
 	err := codegen.CreateFile(filename, codegen.MustParse("package codegen_test\n").Template, 0)
-	if err == nil || !strings.Contains(err.Error(), "https://golang.org/s/generatedcode") {
+	if err == nil || !strings.Contains(err.Error(), "https://go.dev/s/generatedcode") {
 		t.Fatal("Error expected")
 	}
 
