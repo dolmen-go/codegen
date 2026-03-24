@@ -29,7 +29,7 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: Set up Go
       uses: actions/setup-go@v6
@@ -48,7 +48,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Check out code
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
+      with:
+        # Default is 1 (shallow clone with a single commit)
+        # but SonarQube wants full history
+        fetch-depth: 0
 
     - name: Set up Go
       uses: actions/setup-go@v6
