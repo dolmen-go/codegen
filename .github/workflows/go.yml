@@ -29,10 +29,10 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Set up Go
-      uses: actions/setup-go@v5
+      uses: actions/setup-go@v6
       with:
         go-version: ${{ matrix.go }}
       id: go
@@ -46,7 +46,7 @@ jobs:
     - name: Upload coverage to Codecov.io
       # https://github.com/codecov/codecov-action
       # https://docs.codecov.com/docs/quick-start
-      uses: codecov/codecov-action@v4
+      uses: codecov/codecov-action@v5
       with:
         # https://github.com/dolmen-go/codegen/settings/secrets/actions
         token: ${{ secrets.CODECOV_TOKEN }}
