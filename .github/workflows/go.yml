@@ -2,8 +2,8 @@ name: Go
 on: [push]
 jobs:
 
-  build:
-    name: Build&test
+  test:
+    name: Build & test
     runs-on: ubuntu-latest
 
     env:
@@ -38,15 +38,37 @@ jobs:
       id: go
 
     - name: Build
-      run: go build -v .
-
+      run: go build
     - name: Test
-      run: go test -v -covermode=atomic -coverprofile=coverage.out ./...
+      run: go test -v ./...
+
+  quality:
+    name: Quality reports
+    needs: [ test ] 
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v5
+
+    - name: Set up Go
+      uses: actions/setup-go@v6
+      with:
+        go-version: stable
+
+    - name: Test, with coverage
+      run: go test -v -coverprofile=.coverage.out ./...
 
     - name: Upload coverage to Codecov.io
       # https://github.com/codecov/codecov-action
       # https://docs.codecov.com/docs/quick-start
       uses: codecov/codecov-action@v5
       with:
+        # https://github.com/codecov/codecov-action/blob/main/README.md#arguments
+        disable_search: true
+        files: ./.coverage.out
+        fail_ci_if_error: true
+        report_type: coverage
+        disable_telem: true
+        # https://app.codecov.io/gh/dolmen-go/codegen/config/general
         # https://github.com/dolmen-go/codegen/settings/secrets/actions
         token: ${{ secrets.CODECOV_TOKEN }}
