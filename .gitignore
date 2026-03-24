@@ -1,1 +1,5 @@
 /main_foo.go
+
+# CI
+/.coverage.out
+/.gotest.out

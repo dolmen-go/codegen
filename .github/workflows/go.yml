@@ -55,8 +55,20 @@ jobs:
       with:
         go-version: stable
 
-    - name: Test, with coverage
-      run: go test -v -coverprofile=.coverage.out ./...
+    - name: Test, with coverage, as JSON
+      run: go test -json -coverprofile=.coverage.out ./... >.gotest.out
+
+    - name: SonarQube Scan
+      uses: SonarSource/sonarqube-scan-action@v7
+      env:
+        # https://sonarcloud.io/project/configuration/GitHubActions?id=dolmen-go_codegen
+        # https://github.com/dolmen-go/codegen/settings/secrets/actions
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        # See also sonar-project.properties
+        args: >
+          -Dsonar.go.tests.reportPaths=.gotest.out
+          -Dsonar.go.coverage.reportPaths=.coverage.out
 
     - name: Upload coverage to Codecov.io
       # https://github.com/codecov/codecov-action
